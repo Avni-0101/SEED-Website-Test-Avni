@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/images/favicon.ico">
     <title>Image Gallery</title>
     <link rel="stylesheet" href="style.css">    
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 </head>
@@ -31,7 +31,8 @@
         font-size: 1rem;
     }
     </style>
-    <nav class="flex flex-wrap items-center justify-between px-6 py-4 bg-white">
+   
+   <nav class="flex flex-wrap items-center justify-between px-6 py-4 bg-white">
     <div class="flex items-center flex-shrink-0 mr-6">
         <img src="/images/seed logo.png" class="h-24 px-3" alt="Logo">
         <h1 class="text-xl font-bold tracking-tight text-gray-900">SEED</h1>
@@ -55,27 +56,25 @@
         </div>
     </div>
 </nav>
-
-    
-
+ <div class="seed-hover">
+    <h1 class="animate__animated animate__backInDown pt-16  ">SEED-Gallery</h1>
+</div>
     <div class="full-img" id="fullImgBox">
         <img src="img1.jpg" id="fullImg">
         <span onclick="closeFullImg()">X</span>
     </div>
     <div class="img-gallery">
-        <img src="img1.jpg" onclick="openFullImg(this.src)">
-        <img src="img2.jpg" onclick="openFullImg(this.src)">
-        <img src="img3.jpg" onclick="openFullImg(this.src)">
-        <img src="img4.jpg" onclick="openFullImg(this.src)">
-        <img src="img5.jpg" onclick="openFullImg(this.src)">
-        <img src="img6.jpg" onclick="openFullImg(this.src)">
-        <img src="img7.jpg" onclick="openFullImg(this.src)">
-        <img src="img8.jpg" onclick="openFullImg(this.src)">
+        <img src="img9.jpeg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic10.png" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic2.jpg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic3.jpg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic4.jpg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic5.jpg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic6.jpg" onclick="openFullImg(this.src)">
+        <img src="/homegallery/pic7.jpg" onclick="openFullImg(this.src)">
         <button id="load-more">Load More</button>
         <div id="load-more-placeholder"></div>
     </div>
-
-    
     <div class="footer">
         <footer>
 
@@ -84,7 +83,6 @@
                 department of Electrical Engineering at NIT Jalandhar
             </section>
             <div class="icons social">
-                <!-- <a class="px-3" href="#" target="_blank"><i class="fab fa-twitter fa-bounce"></i></a> -->
                 <a class="px-3" href="https://www.instagram.com/ee_nitj/?hl=en" target="_blank"><i class="fab fa-instagram fa-bounce"></i></a>
                 <a class="px-3" href="https://www.linkedin.com/company/seed-nitj/" target="_blank"><i class="fab fa-linkedin fa-bounce"></i></a>
             </div>
@@ -92,17 +90,16 @@
             <section>Copyright © 2023 | All rights reserved, SEED NIT Jalandhar - 144011</section>
         </footer>
     </div>
-
     <script>
 
-function toggleNavbar() {
+        function toggleNavbar() {
             var x = document.getElementById("navbar");
             if (x.className === "w-full block flex-grow lg:flex lg:items-center lg:w-auto ") {
                 x.className += " hidden";
             } else {
                 x.className = "w-full block flex-grow lg:flex lg:items-center lg:w-auto ";
             }
-        } 
+        }
 
 
         var fullImgBox = document.getElementById("fullImgBox");
@@ -119,18 +116,27 @@ function toggleNavbar() {
         const loadMoreBtn = document.querySelector('#load-more');
         const loadMorePlaceholder = document.querySelector('#load-more-placeholder');
         const imagesToAdd = [
-            'image9.jpg ',
-            'image10.jpg',
-            'image11.jpg',
-            'image12.jpg',
-            'image13.jpg',
-            'image14.jpg',
-            'image15.jpg',
-            'image16.jpg'
+            '/homegallery/pic8.png',
+            '/homegallery/pic9.png',
+            '/homegallery/pic1.JPG',
+            'img10.jpeg',
+            'img11.jpeg',
+            'img12.jpg',
+            'img13.jpeg',
+            'img14.jpg',
+            'img1.jpg',
+            '/homegallery/pic4.jpg',
+            'img3.jpg',
+            'img15.jpg',
+            'img16.jpg',
+            'img6.jpg',
+            'img2.jpg',
+            '/homegallery/pic2.jpg',
         ];
 
         let currentIndex = 0;
         let imagesAdded = 0;
+        let loadMoreClicks = 0;
 
         function addImages() {
             const imagesToDisplay = imagesToAdd.slice(currentIndex, currentIndex + 8);
@@ -152,11 +158,13 @@ function toggleNavbar() {
             if (currentIndex < imagesToAdd.length) {
                 imgGallery.appendChild(loadMoreBtn); // move the "Load More" button to the end of the container
             }
+            loadMoreClicks++;
+            if (loadMoreClicks >= 2) {
+                loadMoreBtn.disabled = true; // disable the "Load More" button after two clicks
+            }
         }
 
-        loadMoreBtn.addEventListener('click', () => {
-            addImages();
-        });
+        loadMoreBtn.addEventListener('click', function () { addImages() });
 
 
 
